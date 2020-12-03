@@ -1,0 +1,12 @@
+title: Session Docs | Session | Service Node Testing
+description: Service Nodes are rewarded for providing services to the network in an honest and consistent manner. Consequently, dishonest Service Nodes must be prevented from refusing to store messages for the network while continuing to collect rewards.
+
+# Testing
+
+Service Nodes are rewarded for providing services to the network in an honest and consistent manner. Consequently, dishonest Service Nodes must be prevented from refusing to store messages for the network while continuing to collect rewards. This is accomplished through Service Node testing, a network-level system of peer policing.
+
+## Service Node Testing 
+
+Every Service Node monitors the state of the Loki blockchain, which periodically generates blocks whose hashes are relatively unpredictable. On every block, Service Nodes use this blockhash to deterministically derive a pair of nodes within each swarm: one to be tested (T) and one to perform verification (V). Since T and V both belong to the same swarm, they are expected to store the same database records. As a way of testing this, Node V selects a random record from its database (verifying that the message indeed belongs to the current swarm) and sends a test request to node T, containing only the record's hash and the current block height h. T is expected to respond with the record's actual data. Note that the official binaries used by honest Service Nodes do not expose an endpoint for retrieving a record by its hash, so a cheating node would generally have to download the entire database from one of its honest peers to search for the requested record, making cheating impractical.
+
+When T receives a test request, it first confirms that (T, V) is correct for the specified height h and that h is within some reasonable boundary. It then tries to retrieve the requested record from its own database. Note that due to the nature of message propagation, it is possible for V to hold a record for a message before T first receives it, so T will wait for a short time for the message to arrive, and only then respond to the test. When the requested record is obtained, T can respond to the test with the requested record's data. If V does not receive the response within some acceptable time window or it is incorrect, V reports T to the blockchain as having failed the test. In cases of repeated failures, the Service Nodes as a collective might then decide to decommission or deregister T if it consistently fails storage tests as reported by multiple other Service Nodes.

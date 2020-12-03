@@ -1,0 +1,69 @@
+# Project information
+site_name: 'Session Docs'
+site_url: 'https://docs.loki.network'
+
+# Repository
+repo_name: 'lokidocs'
+repo_url: 'https://github.com/loki-project/loki-docs'
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+  palette:
+     accent: 'green'
+  direction: 'ltr'
+  feature:
+    tabs: true
+  font: false
+  favicon: 'SESSION.png'
+  logo: 'logo.png'
+
+nav:
+- 'Home': 'index.md'
+- 'Loki Name System': 'Messenger/LokiNameSystem.md'
+- 'Threat Models': 'Messenger/threat_model.md'
+- 'Infrastructure': 'Messenger/infrastructure.md'
+- 'Message Routing': 'Messenger/message_routing.md'
+- 'Group Chats': 'Messenger/group_chats.md'
+- 'Testing': 'Messenger/testing.md'
+- 'Multi-Device': 'Messenger/multidevice.md'
+- 'Client Side Protection': 'Messenger/client_side_protection.md'
+- 'Attachments': 'Messenger/attachments.md'
+
+- Guides:
+    - 'Register Session/Wallet names': 'Messenger/HowToRegisterSessionNames.md'
+    - 'Multi-Device Setup': 'Messenger/multi_device_setup.md'
+    - 'OpenGroup Setup': 'Messenger/opengroup_setup.md'
+    - 'Join Open Group on Mobile': 'Messenger/JoinOpenGroupMobile.md'
+    - 'Join Open Group on Desktop': 'Messenger/JoinOpenGroupDesktop.md'
+
+# Customization
+extra_css:
+  - CSS/style.css
+  - CSS/font.css
+
+extra_javascript:
+  - JAVASCRIPT/links.js
+  - JAVASCRIPT/style.js
+
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/loki-project'
+    - type: 'twitter'
+      link: 'https://twitter.com/session_app'
+    - type: 'youtube'
+      link: 'https://www.youtube.com/lokinetwork'
+
+# Google Analytics
+# nope
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - meta
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
