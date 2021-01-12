@@ -1,10 +1,10 @@
 # Project information
 site_name: 'Session Docs'
-site_url: 'https://docs.loki.network'
+site_url: 'https://docs.getsession.org'
 
 # Repository
 repo_name: 'lokidocs'
-repo_url: 'https://github.com/loki-project/loki-docs'
+repo_url: 'https://github.com/loki-project/session-docs'
 
 # Configuration
 theme:
