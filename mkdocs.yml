@@ -3,7 +3,7 @@ site_name: 'Session Docs'
 site_url: 'https://docs.getsession.org'
 
 # Repository
-repo_name: 'lokidocs'
+repo_name: 'session-docs'
 repo_url: 'https://github.com/loki-project/session-docs'
 
 # Configuration
