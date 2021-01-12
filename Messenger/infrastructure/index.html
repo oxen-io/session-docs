@@ -1,0 +1,797 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="At its core, Session is built on the Loki Service Node network, so it is important to understand what this network is, how it functions, and what properties Session derives from it.">
+      
+      
+        <link rel="canonical" href="https://docs.loki.network/Messenger/infrastructure/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../SESSION.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Session Docs | Session | Infrastructure</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../CSS/style.css">
+    
+      <link rel="stylesheet" href="../../CSS/font.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="" data-md-color-accent="green">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#infrastructure" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://docs.loki.network" title="Session Docs" aria-label="Session Docs" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Session Docs
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Session Docs | Session | Infrastructure
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/loki-project/loki-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    lokidocs
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link md-tabs__link--active">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../HowToRegisterSessionNames/" class="md-tabs__link">
+          Guides
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://docs.loki.network" title="Session Docs" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../logo.png" width="48" height="48">
+      
+    </a>
+    Session Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/loki-project/loki-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    lokidocs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LokiNameSystem/" title="Loki Name System" class="md-nav__link">
+      Loki Name System
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../threat_model/" title="Threat Models" class="md-nav__link">
+      Threat Models
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Infrastructure
+      </label>
+    
+    <a href="./" title="Infrastructure" class="md-nav__link md-nav__link--active">
+      Infrastructure
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#foundations" class="md-nav__link">
+    Foundations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-nodes" class="md-nav__link">
+    Service Nodes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onion-requests" class="md-nav__link">
+    Onion Requests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-on-foundations" class="md-nav__link">
+    Building on Foundations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swarms" class="md-nav__link">
+    Swarms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-and-long-term-keys" class="md-nav__link">
+    Identity and Long-Term Keys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoration" class="md-nav__link">
+    Restoration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../message_routing/" title="Message Routing" class="md-nav__link">
+      Message Routing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../group_chats/" title="Group Chats" class="md-nav__link">
+      Group Chats
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../multidevice/" title="Multi-Device" class="md-nav__link">
+      Multi-Device
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../client_side_protection/" title="Client Side Protection" class="md-nav__link">
+      Client Side Protection
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../attachments/" title="Attachments" class="md-nav__link">
+      Attachments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../HowToRegisterSessionNames/" title="Register Session/Wallet names" class="md-nav__link">
+      Register Session/Wallet names
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../multi_device_setup/" title="Multi-Device Setup" class="md-nav__link">
+      Multi-Device Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../opengroup_setup/" title="OpenGroup Setup" class="md-nav__link">
+      OpenGroup Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../JoinOpenGroupMobile/" title="Join Open Group on Mobile" class="md-nav__link">
+      Join Open Group on Mobile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../JoinOpenGroupDesktop/" title="Join Open Group on Desktop" class="md-nav__link">
+      Join Open Group on Desktop
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#foundations" class="md-nav__link">
+    Foundations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-nodes" class="md-nav__link">
+    Service Nodes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onion-requests" class="md-nav__link">
+    Onion Requests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-on-foundations" class="md-nav__link">
+    Building on Foundations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swarms" class="md-nav__link">
+    Swarms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identity-and-long-term-keys" class="md-nav__link">
+    Identity and Long-Term Keys
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoration" class="md-nav__link">
+    Restoration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/loki-project/loki-docs/edit/master/docs/Messenger/infrastructure.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">&para;</a></h1>
+<h2 id="foundations">Foundations<a class="headerlink" href="#foundations" title="Permanent link">&para;</a></h2>
+<p>At its core, Session is built on the Loki Service Node network, so it is important to understand what this network is, how it functions, and what properties Session derives from it.</p>
+<h3 id="service-nodes">Service Nodes<a class="headerlink" href="#service-nodes" title="Permanent link">&para;</a></h3>
+<p>Many projects have attempted to establish decentralised permissionless networks. These projects have often found themselves struggling with a ‘tragedy of the commons’ of sorts, wherein public servers, required for the operation of the network, are under-resourced and overused. This inadvertently causes the network to provide poor service to users, which discourages further use or expansion of the network. </p>
+<p>Conversely, those projects which are able to create large, public permissionless networks find themselves constantly facing questions about the parties that contribute to running that infrastructure. This can be especially damaging when the operation of that infrastructure can adversely affect the privacy, security, or user experience of an application. For example, the Tor network faces constant questions about evidence of Sybil attacks from unknown parties attempting to run large sections of of the public routing network, which could be used to deanonymise users .  </p>
+<p>Session seeks to sidestep these questions by using a different type of public access network: a staked routing and storage network called the Loki Service Node network. This network is based on the Loki blockchain, which itself is based on the Cryptonote protocol. Through the integration of a blockchain network, Session creates a financial precondition for anyone wishing to host a server on the network, and thus participate in Session’s message storage and routing architecture. </p>
+<p>Authorisation for a server to operate on the network is attained through the server operator conducting a special staking transaction, which requires that an operator provably lock an amount of Loki cryptocurrency assigned to their node (approximately 18,550 Loki coins; equivalent USD 7,420 dollars as of 10/02/2020). </p>
+<p>This staking system provides a defense against Sybil attacks by limiting attackers based on the amount of financial resources they have available. The staking system also achieves two other goals which further reduce the likelihood of a Sybil attack.</p>
+<p>Firstly, the need for attackers to buy or control Loki to run Service Nodes creates a feedback loop of increasing prices to run large portions of the network. That is, as the attacker buys or acquires more Loki and locks it, removing it from the circulating supply, the supply of Loki is decreased and the demand from the attacker must be sustained. This causes the price of any remaining Loki to increase, furthering the feedback loop of increasing prices. Secondly, the staking system binds an attacker to their stake, meaning if they are found to be performing active attacks, the underlying value of their stake can sharply decline as users lose trust in the network, or could be destroyed or locked by the network, in any case increasing the attackers sunken costs. </p>
+<p>The other main advantage of a staked blockchain network is that Service Nodes earn rewards for the work they do. Service Nodes are paid a portion of the block reward minted upon the creation of each new block. This system makes Session distinct from altruistic networks like Tor and I2P and instead provides an incentive linked directly with the performance of a Service Node. Honest node behaviour and the provision of a minimum standard of operation is ensured through a consensus-based testing suite. Misbehaving nodes face the threat of having their staked capital locked, while the previously-mentioned cryptocurrency rewards function as the positive incentive for nodes to behave honestly and provide at least the minimum standard of service to the network. </p>
+<h3 id="onion-requests">Onion Requests<a class="headerlink" href="#onion-requests" title="Permanent link">&para;</a></h3>
+<p>The other foundational component of Session is an onion routing protocol, referred to as onion requests, which enables Session clients to obfuscate their IP addresses by creating a 3-hop randomised path through the Service Node network. Onion requests use a simple onion routing protocol which successively encrypts each request for each of the three hops, ensuring: </p>
+<p>the first Service Node only knows the IP address of the client and the IP address of the middle Service Node,
+the middle Service Node only knows the IP address of the first and last Service Nodes, and
+the last Service Node only knows the IP address of the middle Service Node and the final destination IP address for the request.</p>
+<p>Each Session client establishes a path on startup, and once established, all requests for messages, attachments and meta information are sent through this path. Session clients establish a path by selecting three random nodes from their Service Node list (see bootstrapping), which contains each Service Node’s IP address, storage server port and X25519 key. Clients use this information to create an onion, with each layer being encrypted with the X25519 key of its respective service node. This onion is sent to the first Service Node’s storage server; this Service Node then decrypts its layer of the onion. When a Service Node unwraps a layer, the destination key for the next node is revealed. The first Service Node decrypts its layer and initialises a ZMQ connection with the specified downstream node. When the onion reaches the final node in the path, that node sends a path build success message backwards through the path, which indicates a successful path built upon its receipt by the client.</p>
+<p>Upon receiving the path build success message, the client will encrypt their messages with the X25519 keys of the final destination, be that a Service Node, file server, open group server, or client. The client also includes an ephemeral X25519 key in their request. When the destination server or client receives the request, they decrypt it and generate a response. This response is then sent back down the previously-established path, encrypted for the initial sender’s (the client’s) ephemeral key, so that the client can decrypt this response upon receiving it.</p>
+<h2 id="building-on-foundations">Building on Foundations<a class="headerlink" href="#building-on-foundations" title="Permanent link">&para;</a></h2>
+<p>Onion requests provide a straightforward anonymous networking layer, and the Service Node network  provides an incentivised, self-regulating network of remote servers which provide bandwidth and storage space. A number of services are built on top of this foundation in order to give Session features commonly expected of modern messaging applications.
+Storage </p>
+<p>Message storage is an essential feature for any chat application aiming to provide a good user experience. When a user sends a message, they expect the recipient to receive that message even if they turn off their device after the message has been sent. Users also expect the user on the other end to receive the message when their device wakes up from an offline state. Apps that run on decentralised networks typically cannot provide this experience, because of the lack of incentive structures and, consequently, the ephemeral nature of clients and servers on such a network. Session is able to provide message storage through the incentivised Service Node network and its usage of swarms.</p>
+<h3 id="swarms">Swarms<a class="headerlink" href="#swarms" title="Permanent link">&para;</a></h3>
+<p>Although the Loki blockchain incentivises correct Service Node behaviour through rewards and punishments, these incentive models cannot prevent nodes going offline unexpectedly due to operator choice, software bugs, or data center outages. Therefore, for redundancy, a secondary logical data storage layer must be built on top of the Service Node network to ensure reliable message storage and retrieval. </p>
+<p>This secondary logical layer is provided by replicating messages across small groupings of Service Nodes called swarms. The swarm a Service Node initially joins is determined at the time of that Service Node’s registration, with the Service Node having minimal influence over which swarm it joins. This protects against swarms being entirely made up of malicious or non-performant nodes, which is important to maintain the network’s self-regulating properties.</p>
+<p>Composition of each swarm inevitably changes as the networks evolves: some nodes leave the network and the newly registered nodes take their place. If a swarm loses a large number of nodes it may additionally "steal" a node from some other, larger swarm. In the unlikely event that the network has no swarms to steal from (i.e., every swarm is at Nmin=5 nodes), the ‘starving’ swarm (a swarm with fewer than Nmin nodes) will be dissolved and its nodes will be redistributed among the remaining swarms. Conversely, when a large number of nodes enter the network that would oversaturate existing swarms (i.e., every swarm is already at max capacity Nmax=10), a new swarm is created from a random selection of Ntarget=7 excess nodes. Note that Nmin &lt; Ntarget &lt; Nmax to ensure that a newly generated swarm doesn’t get dissolved shortly after and that there is still room for growth.</p>
+<p>The outcome of this algorithm is the creation and, when necessary, rebalancing of swarms of around Nmin⁠–Nmax Service Nodes which store and serve Session clients’ messages. The goal of the swarm algorithm is to ensure that no swarm is controlled by a single entity and that the network is resilient enough to handle both small and large scale events where Service Nodes are no longer contactable, ensuring data integrity and privacy in both cases.</p>
+<p>The following set of simple rules ensure that Service Nodes within swarms remain synchronised as the composition of swarms changes:</p>
+<p>When a node joins a new swarm, existing swarm members recognise this and push the swarm’s data records to the new member.
+When a node leaves a swarm, its existing records can be safely erased, with the exception of when the node is migrating from a dissolving swarm. In  this case, the migrating node determines the swarms responsible for its records and distributes them accordingly.</p>
+<h3 id="identity-and-long-term-keys">Identity and Long-Term Keys<a class="headerlink" href="#identity-and-long-term-keys" title="Permanent link">&para;</a></h3>
+<p>The majority of popular messaging applications require the user to register with an email or phone number in order to use the service. This provides some advantages, including account verification, for purposes of spam protection, and social network discoverability. However, such requirements also create some major privacy and security issues for users. </p>
+<p>The use of a phone number as the basis for ownership of an identity key/long-term key pair weakens security against user accounts being compromised, such as in the cases of popular applications like Signal and WhatsApp. This weakness primarily stems from the fact that phone numbers are managed by centralised service providers (i.e. telecommunications service providers) who can circumvent user control, allowing these providers to assume direct control of specific users’ numbers. Widespread legislation already exists to compel service providers to take this kind of action. Additionally, methods such as SIM swapping attacks, service provider hacking, and phone number recycling can all be exploited by lower-level actors .</p>
+<p>Signal and Whatsapp put forward varying degrees of protection against these types of attacks. Signal and WhatsApp both send a 'Safety numbers have changed' warning to a user's contacts if identity keys are changed. In practice, however, users rarely verify these details out-of-band . </p>
+<p>Both Signal and WhatsApp also allow users to set a "registration PIN lock"  . This protection means that an attacker (including a service provider or state-level actor) needs access to both the phone number and the registration PIN code to modify identity keys. However, this feature is off by default, difficult to find in the settings menu, and automatically disabled after periods of user inactivity. These factors all significantly reduce the efficacy of registration PIN locks as a protective measure against the security risks of phone number-linked accounts.</p>
+<p>Using phone numbers as the basis for account registration also greatly weakens the privacy achievable by an average user. In most countries, users must provide personally identifiable information such as a passport, drivers' license or identity card to obtain a phone number — permanently mapping users’ identities to their phone numbers.These identity mappings are kept in private databases that can be queried by governments or the service providers that own them. There are also a number of web scrapers and indexers that automatically scrape phone numbers associated with individuals. These scrapers may target sources such as leaked databases, public social media profiles, and business phone numbers to link people to their phone numbers. Since the only method of initiating contact with a user in Signal, WhatsApp, or similar application is to know the user’s phone number, this immediately strips away user anonymity — a significant concern for whistleblowers, activists, protestors and other such users.</p>
+<p>Account systems based on phone numbers also limit the potential for the establishment of multiple identities by a single user. These systems also prevent high-risk users without access to a phone number from accessing these services.</p>
+<p>Session does not use email addresses or phone numbers as the basis of its account system. Instead, user identity is established through the generation of X25519 public-private key pairs. These key pairs are not required to be linked with any other identifier, and new key pairs can be generated on-device in seconds. This means that each key pair (and thus, each account) is pseudonymous, unless intentionally linked with an individual identity by the user through out-of-band activity.</p>
+<h3 id="restoration">Restoration<a class="headerlink" href="#restoration" title="Permanent link">&para;</a></h3>
+<p>Because Session does not have a central server to keep records of user identities, the commonly expected user experience of being able to recover an account using a username and password is not possible. Instead, users are prompted to write down their long-term private key (represented as a mnemonic seed, referred to within Session as a recovery phrase) upon account generation. A user can use this backup key to recover their account if their device is lost or destroyed, and the user's contacts will be able to continue contacting that same user account, rather than having to re-initiate contact with a new key.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../threat_model/" title="Threat Models" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Threat Models
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../message_routing/" title="Message Routing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Message Routing
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/loki-project" target="_blank" rel="noopener" title="github" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/session_app" target="_blank" rel="noopener" title="twitter" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.youtube.com/lokinetwork" target="_blank" rel="noopener" title="youtube" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      
+        <script src="../../JAVASCRIPT/links.js"></script>
+      
+        <script src="../../JAVASCRIPT/style.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,753 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Session follows one of two distinct cases for message routing, depending on the availability of participating clients, Asynchronous Routing and Synchronous Routing.">
+      
+      
+        <link rel="canonical" href="https://docs.loki.network/Messenger/message_routing/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../SESSION.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Session Docs | Session | Infrastructure</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../CSS/style.css">
+    
+      <link rel="stylesheet" href="../../CSS/font.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="" data-md-color-accent="green">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#message-routing" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://docs.loki.network" title="Session Docs" aria-label="Session Docs" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../logo.png" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Session Docs
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Session Docs | Session | Infrastructure
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/loki-project/loki-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    lokidocs
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link md-tabs__link--active">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../HowToRegisterSessionNames/" class="md-tabs__link">
+          Guides
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://docs.loki.network" title="Session Docs" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../logo.png" width="48" height="48">
+      
+    </a>
+    Session Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/loki-project/loki-docs/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    lokidocs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../LokiNameSystem/" title="Loki Name System" class="md-nav__link">
+      Loki Name System
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../threat_model/" title="Threat Models" class="md-nav__link">
+      Threat Models
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../infrastructure/" title="Infrastructure" class="md-nav__link">
+      Infrastructure
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Message Routing
+      </label>
+    
+    <a href="./" title="Message Routing" class="md-nav__link md-nav__link--active">
+      Message Routing
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-offline-routing" class="md-nav__link">
+    Asynchronous (Offline) Routing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synchronous-online-routing" class="md-nav__link">
+    Synchronous (Online) Routing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption-and-the-signal-protocol" class="md-nav__link">
+    Encryption and the Signal Protocol
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modifications-to-the-signal-protocol" class="md-nav__link">
+    Modifications to the Signal Protocol
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#friend-requests" class="md-nav__link">
+    Friend Requests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../group_chats/" title="Group Chats" class="md-nav__link">
+      Group Chats
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../testing/" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../multidevice/" title="Multi-Device" class="md-nav__link">
+      Multi-Device
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../client_side_protection/" title="Client Side Protection" class="md-nav__link">
+      Client Side Protection
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../attachments/" title="Attachments" class="md-nav__link">
+      Attachments
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../HowToRegisterSessionNames/" title="Register Session/Wallet names" class="md-nav__link">
+      Register Session/Wallet names
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../multi_device_setup/" title="Multi-Device Setup" class="md-nav__link">
+      Multi-Device Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../opengroup_setup/" title="OpenGroup Setup" class="md-nav__link">
+      OpenGroup Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../JoinOpenGroupMobile/" title="Join Open Group on Mobile" class="md-nav__link">
+      Join Open Group on Mobile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../JoinOpenGroupDesktop/" title="Join Open Group on Desktop" class="md-nav__link">
+      Join Open Group on Desktop
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#asynchronous-offline-routing" class="md-nav__link">
+    Asynchronous (Offline) Routing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synchronous-online-routing" class="md-nav__link">
+    Synchronous (Online) Routing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encryption-and-the-signal-protocol" class="md-nav__link">
+    Encryption and the Signal Protocol
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modifications-to-the-signal-protocol" class="md-nav__link">
+    Modifications to the Signal Protocol
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#friend-requests" class="md-nav__link">
+    Friend Requests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/loki-project/loki-docs/edit/master/docs/Messenger/message_routing.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="message-routing">Message Routing<a class="headerlink" href="#message-routing" title="Permanent link">&para;</a></h1>
+<p>Session follows one of two distinct cases for message routing, depending on the availability of participating clients:</p>
+<h2 id="asynchronous-offline-routing">Asynchronous (Offline) Routing<a class="headerlink" href="#asynchronous-offline-routing" title="Permanent link">&para;</a></h2>
+<p>By default, or when either of the participating clients' statuses is determined as offline (see Synchronous Routing for how client status is determined), Session will use asynchronous routing. In asynchronous routing, the sender determines the recipient's swarm by obtaining the deterministic mapping between the recipient's long-term public key and the currently registered Service Nodes. This information is initially requested from a random Service Node by the sender and updated whenever the client gets an error message in the response that indicates a missing swarm.</p>
+<p>Once this mapping is determined, the sender creates the message protobuf and packs the protobuf in an envelope with the information to be processed by Service Nodes: the long-term public key of the recipient, a timestamp, TTL ("time to live") and a nonce which proves the completion of the required proof of work (see Attacks — Spam). The sender then sends the envelope using an onion request to one or more random Service Nodes within the target swarm (in practice, each request is always sent to 3 service nodes to achieve a high degree of redundancy). These Service Nodes then propagate the message to the remaining nodes in the swarm, and each Service Node stores the message for the duration of its specified TTL.</p>
+<p><img alt="Routing 1" src="../../assets/routing1.png" /></p>
+<p>Alice uses an onion request to communicate with three random Service Nodes in Bob’s swarm. Bob then uses an onion request to retrieve said message, by talking to three random Service Nodes in his swarm.</p>
+<ul>
+<li>Not shown here is the process of Alice’s message being replicated across Bob’s swarm.</li>
+</ul>
+<h2 id="synchronous-online-routing">Synchronous (Online) Routing<a class="headerlink" href="#synchronous-online-routing" title="Permanent link">&para;</a></h2>
+<p>Session clients expose their online status in the encrypted protobuf of any asynchronous message they send. Along with their online status, a sending client also lists a Service Node in their swarm which they are listening to via onion request.</p>
+<p>When a Session client receives a message which signals the online status of another client, the receiver sends an onion request to the sender's specified listening node. The recipient also exposes their own listening node to the sender. If this process is successful, both sender and receiver will have knowledge of each others' online status and corresponding listening nodes. Messages may now be sent synchronously through onion requests to the conversing clients' respective listening nodes.</p>
+<p><img alt="Routing 2" src="../../assets/routing2.png" /></p>
+<p>Alice uses an onion request to send a message to Bob’s listening node. Bob receives this message using an onion request, then sends a message to Alice’s listening node.</p>
+<p>Messages sent using this synchronous method do not contain proof of work, and listening nodes do not replicate or store messages. To ensure messages are not lost, receiving clients send acknowledgements after receipt of each message. If either device goes offline, this acknowledgement will not be received, and the client which is still online will fall back to using the above asynchronous method of message transmission.</p>
+<h2 id="encryption-and-the-signal-protocol">Encryption and the Signal Protocol<a class="headerlink" href="#encryption-and-the-signal-protocol" title="Permanent link">&para;</a></h2>
+<p>So far, we have discussed both the transport and storage of messages. However, any secure messaging application also requires message encryption in order to preserve user privacy. In order for messages to maintain perfect forward secrecy (PFS) and deniable authentication, we cannot only encrypt messages using the long-term public keys of each Session client. Instead, Session uses the Signal protocol. </p>
+<p>The Signal protocol allows clients to maintain PFS and Deniable Authentication in an asynchronous messaging context after initially establishing a session using long-term keys. The Signal protocol achieves perfect forward secrecy through an Extended Triple Diffie-Hellman (X3DH) key agreement protocol and the Double Ratchet protocol for deriving message keys.</p>
+<p>X3DH works in the following way. Consider clients A and B that want to establish a session. A and B each have a long-term identity key: IK_a, IK_b, respectively. Additionally, each client holds a key signed with their identity key (SK_a, SK_b), that they update on a regular basis.
+Finally, each client generates a one-time key (OTK) for every session they want to establish.</p>
+<p>Client A can start a session with client B if it obtains a set of B's "prekeys", consisting of IK_b(pub), SK_b(pub), OK_b(pub). A then validates the signature on SK_b, generates an ephemeral key EK_a, and performs a series of Diffie-Hellman derivations:
+DH1 = DH(IK_a(sec), SK_b(pub))
+DH2 = DH(EK_a(sec), IK_b(pub))
+DH3 = DH(EK_a(sec), SK_b(pub))
+DH4 = DH(EK_a(sec), OK_b(pub))</p>
+<p>The DH components are then concatenated and passed through a key derivation function (KDF) to derive a shared secret key K, which is used to initialise the Double Ratchet:</p>
+<p>K = KDF(DH1 || DH2 || DH3 || DH4)</p>
+<p>Client A is now ready to start deriving message keys using the Double Ratchet, and thus start communicating with B. In the first message that it sends, A includes IK_a(pub), EK_a(pub) necessary for B to derive K.</p>
+<p>The Double Ratchet uses a chain of Key derivation functions (KDF), each taking the previous chain key and DH parameters communicated by both clients in each of their messages, and producing the next chain key and the actual message key used for encrypting the next message. Even if some message keys get exposed, only the messages related to those keys would be compromised, and the remaining message history would continue to be hidden (the PFS property) as KDF is a one-way function. Additionally, no future messages would be exposed (the “self healing” property) as the potential attacker would be missing the necessary DH parameters to maintain the ratchet.</p>
+<p>The Signal protocol obtains deniability through the same scheme by allowing for all ephemeral keys used in the scheme to be left unsigned by both parties. This allows any user to create ephemeral keys for any other user, combine those ephemeral keys with their own long term and ephemeral keys to produce plausible yet forged transcripts.</p>
+<p>The Signal protocol achieves X3DH in an asynchronous environment through the use of prekeys, which contain the required information to asynchronously calculate the ephemeral keys used in the X3DH protocol. In the case of the Signal application, prekeys are stored on a central server, ensuring that these prekeys are available even when a user's device is offline.</p>
+<h3 id="modifications-to-the-signal-protocol">Modifications to the Signal Protocol<a class="headerlink" href="#modifications-to-the-signal-protocol" title="Permanent link">&para;</a></h3>
+<p>Session does not modify the fundamentals of the Signal protocol. However, in order to avoid using centralised servers, we have made some changes to the sharing of prekey bundles. In Session, the sharing of prekey bundles is conducted through the 'friend request' system (see below). We also add additional information to each message, for the purpose of routing the message to its desired recipient and verifying that it was created correctly.</p>
+<h3 id="friend-requests">Friend Requests<a class="headerlink" href="#friend-requests" title="Permanent link">&para;</a></h3>
+<p>Friend requests are sent the first time a client initiates communication with a new contact. Friend requests contain a short message with a written introduction, the sender's prekey bundle, and meta-information like the sender's display name and public key, which the recipient can use to respond. Friend requests are encrypted for the public key of the recipient using ECDH. When a friend request is received, the client can choose whether to accept it. Upon acceptance, the client can use the prekey bundle to begin a session as per the original Signal protocol, and start sending messages asynchronously.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../infrastructure/" title="Infrastructure" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Infrastructure
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../group_chats/" title="Group Chats" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Group Chats
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/loki-project" target="_blank" rel="noopener" title="github" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/session_app" target="_blank" rel="noopener" title="twitter" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.youtube.com/lokinetwork" target="_blank" rel="noopener" title="youtube" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      
+        <script src="../../JAVASCRIPT/links.js"></script>
+      
+        <script src="../../JAVASCRIPT/style.js"></script>
+      
+    
+  </body>
+</html>

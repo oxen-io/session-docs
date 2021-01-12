@@ -1,0 +1,169 @@
+/* Override header and footer */
+.md-footer-nav,
+.md-footer-meta, 
+.md-header
+{
+    background-color: #333132
+}
+
+/* Highlight current page in nav menu */
+.md-nav__link--active
+{
+    color      : #00F782;
+    font-weight: bold;
+}
+
+/* Increase size of social media links in page footer */
+.md-footer-social
+{
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 76.1875em)
+{
+    html .md-nav--primary .md-nav__title--site 
+    {
+    	background-color: #000000;
+    }
+    .md-nav__source
+    {
+    	background-color: #008522;
+    }
+}
+
+.md-nav
+{
+    background-color:#fff!important;
+}
+
+/* Changes menu bar link's colour on hover. */
+.md-header-nav__topic a:hover
+{
+    color:black;
+}
+
+/*Sizing for Loki logo in menu bar */
+#Home img
+{
+    width     : 150px;
+    min-height: 30px;
+}
+
+.md-main
+{
+    background-color:#fff;
+}
+
+.md-nav__link:hover
+{
+    color:black!important;
+}
+
+.md-clipboard::before
+{
+    color: #ddd;
+}
+
+.pre:hover .md-clipboard::before, 
+.codehilite:hover .md-clipboard::before, 
+.md-typeset .highlight:hover .md-clipboard::before
+{
+    color:black;
+}
+
+[data-md-color-accent="green"] .md-typeset .md-clipboard:hover::before, 
+[data-md-color-accent="green"] .md-typeset .md-clipboard:active::before
+{
+    color:#78be20!important;
+}
+
+.md-search-result__meta{
+    background-color:#ddd ;
+    color           :black;
+}
+
+[data-md-toggle="search"]:checked ~ .md-header .md-search__input{
+    background-color:#fff!important;
+}
+
+.md-search__scrollwrap
+{
+    background-color:#ddd;
+}
+
+[data-md-toggle="search"]:checked ~ .md-header .md-search__input + .md-search__icon, 
+[data-md-toggle="search"]:checked ~ .md-header .md-search__input::placeholder, 
+[data-md-toggle="search"]:checked ~ .md-header .md-search__input 
+{
+    color:white;
+}
+
+.md-search__input ~ .md-search__icon, .md-search__input::placeholder{
+    color:#00f782;
+}
+
+.md-typeset code
+{
+    box-shadow: 0.0em 0 0 #272727, -0.0em 0 0 #272727;
+}
+
+.md-typeset .admonition > .admonition-title::before, .md-typeset details > .admonition-title::before, 
+.md-typeset .admonition > summary::before, 
+.md-typeset details > summary::before
+{
+    color: #78be20;
+}
+
+.md-typeset .admonition, .md-typeset details
+{
+    border-left:0.4rem solid #78be20;
+}
+
+.md-typeset details > summary
+{
+    background-color: rgba(120, 190, 32, 0.3);
+}
+
+.md-typeset summary::after
+{
+    color: #78be20;
+}
+
+.md-typeset table:not([class]) th
+{
+    background-color:#00f782;
+    color:black;
+}
+
+.md-typeset table:not([class]) td
+{
+    border-top:0.2rem solid #00f782;
+}
+
+.md-typeset blockquote
+{
+    border-left: 0.4rem solid #00f782;
+}
+
+.md-typeset hr 
+{
+    border-bottom: 0.1rem dotted #00f782;
+}
+
+.md-tabs 
+{
+    background-color: #00f782!important;
+    color: #78be20;
+}
+
+.md-tabs__link 
+{
+    color: #7a7a7a;
+    opacity:0.9;
+}
+
+.md-tabs__link--active
+{
+    color:#333132;
+    font-weight: bold;
+}

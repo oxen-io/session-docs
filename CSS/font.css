@@ -1,0 +1,140 @@
+html, body 
+{
+    font-family: Arial, sans-serif;
+    font-style : normal;
+}
+
+pre, code 
+{
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+    font-style      : normal;
+    color           : #00F782!important;
+    background-color: #2e2e2e!important;
+
+}
+
+.md-typeset h1 
+{
+    color         : #333132;
+    font-size     : 36px;
+    text-transform: none;
+}
+
+.md-typeset h2 
+{
+    color         : #333132;
+    font-size     : 28px;
+    font-weight   : bold;
+    text-transform: none;
+}
+
+.md-typeset h3 
+{
+    color         : #333132;
+    font-size     : 22px;
+    text-transform: none;
+}
+
+.md-typeset h4 
+{
+    color         : #7a7a7a;
+    font-size     : 20px;
+    text-transform: none;
+}
+
+.md-typeset h5 
+{
+    color         : #7a7a7a;
+    font-size     : 18px;
+    text-transform: none;
+}
+
+.md-typeset h6 
+{
+    color         : #7a7a7a;
+    font-size     : 16px;
+    text-transform: none;
+}
+
+.md-typeset details
+{
+    color:white;
+}
+
+.md-typeset p,
+.md-typeset ul,
+.md-typeset ol,
+.md-typeset table 
+{
+    color    : #7a7a7a;
+    font-size: 16px;
+}
+.md-typeset table
+{
+    background-color: #f5f5f5;
+}
+
+.md-nav__link[data-md-state="blur"] 
+{
+    color: #00F782;
+}
+
+.md-typeset a
+{
+    color: #00c853;
+}
+
+.md-typeset a:hover{
+    color:black!important;
+}
+
+.md-nav__title{
+    color: black!important;
+}
+
+
+.md-nav__item, 
+.md-nav__link li 
+{
+    color: #7a7a7a;
+}
+
+.md-nav__title
+{
+    font-size:1.6rem;
+}
+
+.md-header-nav__topic a 
+{
+    font-size  :14px;
+    padding    :10px;
+    font-family:Roboto, sans-serif;
+}
+
+/* Styling for mobile view */
+@media only screen and (max-width: 76.1875em) 
+{
+    .md-header-nav__topic a 
+    {
+        font-size  :11px;
+        padding    :2px;
+        font-family:Roboto, sans-serif;
+    }
+    html .md-nav--primary .md-nav__title ~ .md-nav__list
+    {
+        background-color:#1a1a1a!important;
+    }
+    html .md-nav--primary .md-nav__title, 
+    html .md-nav--primary .md-nav__title::before 
+    {
+        background-color: black;
+        color           : #00F782;
+    }
+}
+
+.documentation
+{
+    color      : #00F782;
+    font-weight: bold;
+}
